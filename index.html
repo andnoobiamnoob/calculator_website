@@ -112,17 +112,17 @@ button:active{
 <button class="function" onclick="append('Math.PI')">π</button>
 <button class="orange" onclick="append('/')">÷</button>
 
-<button class="function" onclick="append('Math.sin(')">sin</button>
-<button class="function" onclick="append('Math.cos(')">cos</button>
-<button class="function" onclick="append('Math.tan(')">tan</button>
-<button class="function" onclick="append('Math.sqrt(')">√</button>
-<button class="orange" onclick="append('*')">×</button>
+<button class="function" onclick="append('sin(')">sin</button>
+<button class="function" onclick="append('cos(')">cos</button>
+<button class="function" onclick="append('tan(')">tan</button>
+<button class="function" onclick="append('√(')">√</button>
 
-<button class="function" onclick="append('Math.log10(')">log</button>
-<button class="function" onclick="append('Math.log(')">ln</button>
-<button class="function" onclick="append('Math.exp(')">eˣ</button>
-<button class="function" onclick="append('**')">xʸ</button>
-<button class="orange" onclick="append('-')">−</button>
+<button class="function" onclick="append('log(')">log</button>
+<button class="function" onclick="append('ln(')">ln</button>
+<button class="function" onclick="append('e^(')">eˣ</button>
+
+<button class="function" onclick="append('π')">π</button>
+<button class="function" onclick="append('e')">e</button>
 
 <button class="dark" onclick="append('7')">7</button>
 <button class="dark" onclick="append('8')">8</button>
@@ -185,35 +185,33 @@ function factorial(){
     display.value = result;
 }
 
-function calculate(){
-    try{
-        let result = eval(display.value);
+function calculate() {
+    try {
+
+        let expression = display.value;
+
+        expression = expression.replaceAll("sin(", "Math.sin(");
+        expression = expression.replaceAll("cos(", "Math.cos(");
+        expression = expression.replaceAll("tan(", "Math.tan(");
+
+        expression = expression.replaceAll("√(", "Math.sqrt(");
+
+        expression = expression.replaceAll("log(", "Math.log10(");
+        expression = expression.replaceAll("ln(", "Math.log(");
+
+        expression = expression.replaceAll("e^(", "Math.exp(");
+
+        expression = expression.replaceAll("π", "Math.PI");
+        expression = expression.replaceAll("e", "Math.E");
+
+        let result = eval(expression);
+
         display.value = result;
-    }
-    catch{
+
+    } catch {
         display.value = "Error";
     }
 }
-
-document.addEventListener("keydown",(e)=>{
-
-    if("0123456789+-*/().".includes(e.key)){
-        append(e.key);
-    }
-
-    if(e.key==="Enter"){
-        calculate();
-    }
-
-    if(e.key==="Backspace"){
-        backspace();
-    }
-
-    if(e.key==="Escape"){
-        clearDisplay();
-    }
-
-});
 </script>
 
 </body>
