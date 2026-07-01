@@ -106,44 +106,51 @@ button:active{
 
 <div class="buttons">
 
-<button class="gray" onclick="clearDisplay()">AC</button>
-<button class="gray" onclick="append('(')">(</button>
-<button class="gray" onclick="append(')')">)</button>
-<button class="function" onclick="append('Math.PI')">π</button>
-<button class="orange" onclick="append('/')">÷</button>
+    <!-- Row 1 -->
+    <button class="gray" onclick="clearDisplay()">AC</button>
+    <button class="gray" onclick="append('(')">(</button>
+    <button class="gray" onclick="append(')')">)</button>
+    <button class="function" onclick="append('π')">π</button>
+    <button class="orange" onclick="append('/')">÷</button>
 
-<button class="function" onclick="append('sin(')">sin</button>
-<button class="function" onclick="append('cos(')">cos</button>
-<button class="function" onclick="append('tan(')">tan</button>
-<button class="function" onclick="append('√(')">√</button>
+    <!-- Row 2 -->
+    <button class="function" onclick="append('sin(')">sin</button>
+    <button class="function" onclick="append('cos(')">cos</button>
+    <button class="function" onclick="append('tan(')">tan</button>
+    <button class="function" onclick="append('√(')">√</button>
+    <button class="orange" onclick="append('*')">×</button>
 
-<button class="function" onclick="append('log(')">log</button>
-<button class="function" onclick="append('ln(')">ln</button>
-<button class="function" onclick="append('e^(')">eˣ</button>
+    <!-- Row 3 -->
+    <button class="function" onclick="append('log(')">log</button>
+    <button class="function" onclick="append('ln(')">ln</button>
+    <button class="function" onclick="append('e^(')">eˣ</button>
+    <button class="function" onclick="append('**')">xʸ</button>
+    <button class="orange" onclick="append('-')">−</button>
 
-<button class="function" onclick="append('π')">π</button>
-<button class="function" onclick="append('e')">e</button>
+    <!-- Row 4 -->
+    <button class="dark" onclick="append('7')">7</button>
+    <button class="dark" onclick="append('8')">8</button>
+    <button class="dark" onclick="append('9')">9</button>
+    <button class="function" onclick="append('e')">e</button>
+    <button class="orange" onclick="append('+')">+</button>
 
-<button class="dark" onclick="append('7')">7</button>
-<button class="dark" onclick="append('8')">8</button>
-<button class="dark" onclick="append('9')">9</button>
-<button class="function" onclick="append('Math.E')">e</button>
-<button class="orange" onclick="append('+')">+</button>
+    <!-- Row 5 -->
+    <button class="dark" onclick="append('4')">4</button>
+    <button class="dark" onclick="append('5')">5</button>
+    <button class="dark" onclick="append('6')">6</button>
+    <button class="function" onclick="factorial()">n!</button>
+    <button class="orange" onclick="calculate()">=</button>
+    
+    <!-- Row 6 -->
+    <button class="dark" onclick="append('1')">1</button>
+    <button class="dark" onclick="append('2')">2</button>
+    <button class="dark" onclick="append('3')">3</button>
+    <button class="function" onclick="append('%')">%</button>
+    <button class="dark" onclick="append('.')">.</button>
 
-<button class="dark" onclick="append('4')">4</button>
-<button class="dark" onclick="append('5')">5</button>
-<button class="dark" onclick="append('6')">6</button>
-<button class="function" onclick="factorial()">n!</button>
-<button class="orange" onclick="calculate()" style="grid-row:span 2;height:148px;border-radius:40px;">=</button>
-
-<button class="dark" onclick="append('1')">1</button>
-<button class="dark" onclick="append('2')">2</button>
-<button class="dark" onclick="append('3')">3</button>
-<button class="function" onclick="append('%')">%</button>
-
-<button class="dark zero" onclick="append('0')">0</button>
-<button class="dark" onclick="append('.')">.</button>
-<button class="function" onclick="backspace()">⌫</button>
+    <!-- Row 7 -->
+    <button class="dark zero" onclick="append('0')">0</button>
+    <button class="function" onclick="backspace()">⌫</button>
 
 </div>
 
