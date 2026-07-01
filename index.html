@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Web Calculator</title>
+    <style>
+        /* CSS Reset and Core Layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0f172a;
+        }
+
+        /* Calculator Wrapper */
+        .calculator {
+            background-color: #1e293b;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 340px;
+        }
+
+        /* Input Display Screen */
+        .display {
+            width: 100%;
+            height: 70px;
+            background-color: #0f172a;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 0 16px;
+            color: #f8fafc;
+            font-size: 2rem;
+            text-align: right;
+        }
+
+        /* Grid Framework for Buttons */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        /* Base Button Design */
+        button {
+            padding: 18px 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            background-color: #334155;
+            color: #f8fafc;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom Utility Key Styling */
+        button.operator {
+            background-color: #f97316;
+            color: #ffffff;
+        }
+
+        button.operator:hover {
+            background-color: #ea580c;
+        }
+
+        button.clear {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        button.clear:hover {
+            background-color: #dc2626;
+        }
+
+        button.equal {
+            grid-column: span 2;
+            background-color: #10b981;
+            color: #ffffff;
+        }
+
+        button.equal:hover {
+            background-color: #059669;
+        }
+
+        button:hover:not(.operator):not(.clear):not(.equal) {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <!-- Display Field -->
+        <input type="text" id="screen" class="display" readonly value="0">
+        
+        <!-- Interactive Buttons Keypad -->
+        <div class="buttons-grid">
+            <button class="clear" onclick="clearScreen()">C</button>
+            <button onclick="appendValue('/')" class="operator">÷</button>
+            <button onclick="appendValue('*')" class="operator">×</button>
+            <button onclick="deleteLast()">⌫</button>
+
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('-')" class="operator">-</button>
+
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('+')" class="operator">+</button>
+
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="calculate()" class="equal">=</button>
+
+            <button onclick="appendValue('0')" style="grid-column: span 2;">0</button>
+            <button onclick="appendValue('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        const screen = document.getElementById('screen');
+
+        // Appends character inputs to the display screen
+        function appendValue(value) {
+            if (screen.value === '0' && value !== '.') {
+                screen.value = value;
+            } else {
+                screen.value += value;
+            }
+        }
+
+        // Resets the screen back to initial state
+        function clearScreen() {
+            screen.value = '0';
+        }
+
+        // Removes the trailing character from the calculation input string
+        function deleteLast() {
+            if (screen.value.length > 1) {
+                screen.value = screen.value.slice(0, -1);
+            } else {
+                screen.value = '0';
+            }
+        }
+
+        // Computes mathematical expressions using JavaScript's native engine
+        function calculate() {
+            try {
+                // Safeguards evaluations and resolves output formatting
+                const result = eval(screen.value);
+                screen.value = Number(result.toFixed(8)).toString(); 
+            } catch (error) {
+                screen.value = 'Error';
+                setTimeout(clearScreen, 1500); // Autofixes bad input displays quickly
+            }
+        }
+    </script>
+</body>
+</html>
