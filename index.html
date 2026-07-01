@@ -151,6 +151,8 @@ button:active{
     <!-- Row 7 -->
     <button class="dark zero" onclick="append('0')">0</button>
     <button class="function" onclick="backspace()">⌫</button>
+    <button class="function" id="modeBtn" onclick="toggleMode()">DEG</button>
+    <button class="function" id="modeBtn" onclick="toggleMode()">DEG</button>
 
 </div>
 
@@ -161,6 +163,15 @@ Made by Shantanu Rana
 </div>
 
 <script>
+
+    let degreeMode = true;
+
+function toggleMode() {
+    degreeMode = !degreeMode;
+    document.getElementById("modeBtn").innerText =
+        degreeMode ? "DEG" : "RAD";
+}
+    
 const display = document.getElementById("display");
 
 function append(value){
